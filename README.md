@@ -29,13 +29,13 @@ First create the data in this format
 
     df = pd.DataFrame.from_dict(data, orient='columns')
     df
-![](Readme Images/img1_dataframe.png)
+![](images/img1_dataframe.png)
 
 Use the simplehbase.df_to_dict function to convert the Pandas DataFrame to Dictionary
 
     data = simplehbase.df_to_dict(df)
     data
-![](Readme Images/img2_dict.png)
+![](images/img2_dict.png)
 
 Finally insert the data
 
