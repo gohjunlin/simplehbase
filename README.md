@@ -40,3 +40,7 @@ Use the simplehbase.df_to_dict function to convert the Pandas DataFrame to Dicti
 Finally insert the data
 
     AzConn.insert_data(TableName, data)
+
+## References:
+- https://docs.microsoft.com/en-us/azure/hdinsight/hbase/apache-hbase-tutorial-get-started-linux
+- https://hbase.apache.org/1.2/apidocs/org/apache/hadoop/hbase/rest/package-summary.html
