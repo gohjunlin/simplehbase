@@ -72,8 +72,11 @@ class AzHbaseRestAPI:
             return
         query_url = self.url + str(table_name) + "/" + str(row_key)
         response = requests.get(query_url, headers=self.headers, auth=(self.username, self.password))
-
-        key = base64_to_string(json.loads(response.text)['Row'][0]['key'])
+        try:
+            key = base64_to_string(json.loads(response.text)['Row'][0]['key'])
+        except:
+            print ('{} does not exist'.format(row_key))
+            return
         n = len(json.loads(response.text)['Row'][0]['Cell'])
         df = pd.DataFrame(json.loads(response.text)['Row'][0]['Cell']).drop(columns='timestamp').applymap(base64_to_string).assign(ID = [key]*n).pivot(index='ID', columns='column', values='$')
 
@@ -84,5 +87,6 @@ class AzHbaseRestAPI:
                 return df[column].values[0]
             except:
                 print ("Column {} does not exist for {}.".format(column, row_key))
+                return
     
         
