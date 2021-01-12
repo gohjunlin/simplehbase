@@ -1,12 +1,24 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
-setup(name='simplehbase',
-      version='0.1',
-      description='A simple package to connect to HBase in Azure HDInsight using REST API',
-      url='https://github.com/gohjunlin/simplehbase',
-      author='Goh Jun Lin',
-      author_email='62754326+gohjunlin@users.noreply.github.com',
-      license='MIT',
-      packages=['simplehbase'],
-	  install_requires=['pandas' ,'requests'],
-      zip_safe=False)
+__version__ = None
+exec(open('simplehbase/_version.py', 'r').read())
+
+NAME = 'simplehbase'
+VERSION = __version__
+DESCRIPTION = 'A simple package to connect to HBase in Azure HDInsight using REST API'
+URL = 'https://github.com/gohjunlin/simplehbase'
+AUTHOR = 'gohjunlin'
+AUTHOR_EMAIL = '62754326+gohjunlin@users.noreply.github.com'
+LICENSE = 'MIT'
+INSTALL_REQUIRES = ['pandas' ,'requests']
+
+setup(name = NAME,
+      version = VERSION,
+      description = DESCRIPTION,
+      url = URL,
+      author = AUTHOR,
+      author_email = AUTHOR_EMAIL,
+      license = LICENSE,
+      packages = find_packages(),
+	  install_requires = INSTALL_REQUIRES,
+      zip_safe = False)

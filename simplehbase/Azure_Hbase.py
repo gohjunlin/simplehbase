@@ -1,6 +1,8 @@
 import requests
 import json
-import base64
+import pandas as pd
+
+from .utils import base64_to_string
 
 class AzHbaseRestAPI:
     
@@ -68,11 +70,19 @@ class AzHbaseRestAPI:
         if self.url == None or self.username == None or self.password == None:
             print("Missing Parameters. Use connectionParamaters to set up URL, username and password")
             return
+        query_url = self.url + str(table_name) + "/" + str(row_key)
+        response = requests.get(query_url, headers=self.headers, auth=(self.username, self.password))
+
+        key = base64_to_string(json.loads(response.text)['Row'][0]['key'])
+        n = len(json.loads(response.text)['Row'][0]['Cell'])
+        df = pd.DataFrame(json.loads(response.text)['Row'][0]['Cell']).drop(columns='timestamp').applymap(base64_to_string).assign(ID = [key]*n).pivot(index='ID', columns='column', values='$')
+
         if column == None:
-            query_url = self.url+str(table_name)+"/"+str(row_key)
-            response = requests.get(query_url, headers=self.headers, auth=(self.username, self.password))
-            return response.text
+            return df
         else:
-            pass
+            try:
+                return df[column].values[0]
+            except:
+                print ("Column {} does not exist for {}.".format(column, row_key))
     
         
