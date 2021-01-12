@@ -40,8 +40,21 @@ Use the simplehbase.df_to_dict function to convert the Pandas DataFrame to Dicti
 Finally insert the data
 
     AzConn.insert_data(TableName, data)
+
+### Retrieve Data by row_key
+To retrieve all the data for a specific row_key
+
+    AzConn.get_value(TableName, '1000')
+![img.png](images/img3_output_data1.png)
+
+
+To retrieve data for a specific column for a specific row_key
+
+    AzConn.get_value(TableName, '1000', 'Personal:Name')
+![img.png](images/img4_output_data2.png)
+
 # Coming Up
-- Method to extract data from Hbase
+- Method to scan data from Hbase
 
 # References:
 - https://docs.microsoft.com/en-us/azure/hdinsight/hbase/apache-hbase-tutorial-get-started-linux
