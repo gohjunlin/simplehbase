@@ -10,7 +10,7 @@ class AzHbaseRestAPI:
         self.url = None
         self.username = None
         self.password = None
-        self.headers = headers = {
+        self.headers = {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             }
@@ -88,5 +88,21 @@ class AzHbaseRestAPI:
             except:
                 print ("Column {} does not exist for {}.".format(column, row_key))
                 return
+
+    def create_scanner(self, table_name):
+        if self.url == None or self.username == None or self.password == None:
+            print("Missing Parameters. Use connectionParamaters to set up URL, username and password")
+            return
+
+        query_url = self.url + str(table_name) + "/scanner"
+
+        data = {
+            '<Scanner batch="1"/>'
+        }
+        print(query_url, data)
+        response = requests.post(query_url, headers=self.headers, data=json.dumps(data), auth=(self.username, self.password))
+
+        return response.text
+
     
         
