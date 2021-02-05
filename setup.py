@@ -10,7 +10,7 @@ URL = 'https://github.com/gohjunlin/simplehbase'
 AUTHOR = 'gohjunlin'
 AUTHOR_EMAIL = '62754326+gohjunlin@users.noreply.github.com'
 LICENSE = 'MIT'
-INSTALL_REQUIRES = ['pandas' ,'requests']
+INSTALL_REQUIRES = ['pandas' ,'requests', 'tqdm']
 
 setup(name = NAME,
       version = VERSION,

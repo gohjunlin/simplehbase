@@ -35,7 +35,7 @@ Use the simplehbase.df_to_dict function to convert the Pandas DataFrame to Dicti
 
     data = simplehbase.df_to_dict(df)
     data
-![](images/img2_dict.png)
+![](images/img2_dictionary.png)
 
 Finally insert the data
 
