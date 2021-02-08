@@ -46,7 +46,10 @@ def df_to_dict(df):
         lambda x: string_to_base64(x))
     df = df.set_index('ID')
 
-    data = {'Row': [{'key': df.iloc[i: i + n_col].index[0], 'Cell': df.iloc[i: i + n_col].to_dict('records')} for i in
-                    tqdm(num_list)]}
+    data = {'Row': []}
+    for i in tqdm(num_list):
+        df_temp = df.iloc[i: i + n_col]
+        Key = {'key': df_temp.index[0], 'Cell': df_temp.to_dict('records')}
+        data['Row'].append(Key)
 
     return data
