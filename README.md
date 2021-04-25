@@ -1,7 +1,7 @@
 # Guide for simplehbase
 
 ### Installing simplehbase
-- If git is installed, use this command instead `pip install git+https://github.com/gohjunlin/simplehbase`
+- If git is installed, use this command  `pip install git+https://github.com/gohjunlin/simplehbase`
 - If git is not installed, download the simplehbase folder and setup.py. Then, traverse to the folder where setup.py is and execute`pip install .`
 
 ### Connect to Azure Hbase
