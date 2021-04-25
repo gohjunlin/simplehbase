@@ -64,7 +64,7 @@ class AzHbaseRestAPI:
         else:
             query_url = self.url+str(table_name)+'/false-row-key"'
             response = requests.put(query_url, headers=self.headers, data=json.dumps(data), auth=(self.username, self.password))
-            return response.status_code
+            return response.status_code, response.reason
     
     def get_value(self, table_name, row_key, column = None):
         if self.url == None or self.username == None or self.password == None:
