@@ -89,6 +89,16 @@ class AzHbaseRestAPI:
                 print ("Column {} does not exist for {}.".format(column, row_key))
                 return
 
+    def delete_row(self, table_name, row_key):
+        if self.url == None or self.username == None or self.password == None:
+            print("Missing Parameters. Use connectionParamaters to set up URL, username and password")
+            return
+
+        else:
+            query_url = self.url + str(table_name) + "/" + str(row_key)
+            response = requests.delete(query_url, headers=self.headers, auth=(self.username, self.password))
+            return response.status_code
+
     def create_scanner(self, table_name):
         if self.url == None or self.username == None or self.password == None:
             print("Missing Parameters. Use connectionParamaters to set up URL, username and password")

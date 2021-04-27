@@ -41,7 +41,7 @@ Finally insert the data
 
     AzConn.insert_data(TableName, data)
 
-### Retrieve Data by row_key
+### Retrieve Data
 To retrieve all the data for a specific row_key
 
     AzConn.get_value(TableName, '1000')
@@ -52,6 +52,11 @@ To retrieve data for a specific column for a specific row_key
 
     AzConn.get_value(TableName, '1000', 'Personal:Name')
 ![img.png](images/img4_output_data2.png)
+
+### Delete Data
+To delete all the data for a specific row_key
+
+    AzConn.delete_row(TableName, '1000')
 
 # Coming Up
 - Method to scan data from Hbase
